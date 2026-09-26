@@ -6,7 +6,7 @@ const menuItems = [
     desc: 'Single patty, egg, cheese, lettuce, tomato & BBQ onions',
     price: 45,
     category: 'dagwood',
-    image: 'assets/dagwood.jpg'
+    image: './assets/dagwood.jpg'
   },
   {
     id: 'double-dagwood',
@@ -14,7 +14,7 @@ const menuItems = [
     desc: 'Double patty, egg, cheese, lettuce, tomato & BBQ onions',
     price: 65,
     category: 'dagwood',
-    image: 'assets/dagwood.jpg'
+    image: './assets/dagwood.jpg'
   },
   {
     id: 'single-dagwood-wings',
@@ -22,7 +22,7 @@ const menuItems = [
     desc: 'Single patty, egg, cheese, lettuce, tomato & BBQ onions + 2 wings',
     price: 75,
     category: 'dagwood',
-    image: 'assets/dagwood.jpg'
+    image: './assets/dagwood.jpg'
   },
   {
     id: 'double-dagwood-wings',
@@ -30,7 +30,7 @@ const menuItems = [
     desc: 'Double patty, egg, cheese, lettuce, tomato & BBQ onions + 2 wings',
     price: 85,
     category: 'dagwood',
-    image: 'assets/dagwood.jpg'
+    image: './assets/dagwood.jpg'
   },
   {
     id: 'wings-4',
@@ -38,7 +38,7 @@ const menuItems = [
     desc: 'Crispy wings served with chips',
     price: 45,
     category: 'wings',
-    image: 'assets/wings.jpg'
+    image: './assets/wings.jpg'
   },
   {
     id: 'wings-8',
@@ -46,7 +46,7 @@ const menuItems = [
     desc: 'Crispy wings served with chips',
     price: 85,
     category: 'wings',
-    image: 'assets/wings.jpg'
+    image: './assets/wings.jpg'
   }
 ];
 
@@ -345,3 +345,13 @@ renderMenu();
 updateCartUI();
 updateOpenStatus();
 setInterval(updateOpenStatus, 60000); // refresh every minute
+
+/* ===== SAFETY: re-run if DOM was slow ===== */
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    updateOpenStatus();
+    updateCartUI();
+  } catch (e) {
+    console.error('Init error:', e);
+  }
+});
