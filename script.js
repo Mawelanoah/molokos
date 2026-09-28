@@ -1,4 +1,4 @@
-/* ===== MENU DATA — from poster only ===== */
+/* ===== MENU DATA ===== */
 const menuItems = [
   {
     id: 'single-dagwood',
@@ -50,22 +50,21 @@ const menuItems = [
   }
 ];
 
-/* ===== OPENING HOURS (easy to edit) =====
+/* ===== OPENING HOURS =====
    Format: day 0=Sun … 6=Sat
    open/close as "HH:MM" 24h
-   null = closed that day
 */
 const OPENING_HOURS = {
-  0: { open: '07:00', close: '18:00' }, // Sunday
-  1: { open: '07:00', close: '18:00' }, // Monday
-  2: { open: '07:00', close: '18:00' }, // Tuesday
-  3: { open: '07:00', close: '18:00' }, // Wednesday
-  4: { open: '07:00', close: '18:00' }, // Thursday
-  5: { open: '07:00', close: '18:00' }, // Friday
-  6: { open: '07:00', close: '18:00' }  // Saturday
+  0: { open: '07:00', close: '18:00' },
+  1: { open: '07:00', close: '18:00' },
+  2: { open: '07:00', close: '18:00' },
+  3: { open: '07:00', close: '18:00' },
+  4: { open: '07:00', close: '18:00' },
+  5: { open: '07:00', close: '18:00' },
+  6: { open: '07:00', close: '18:00' }
 };
 
-const WHATSAPP_NUMBER = '27816531070'; // 081 653 1070 from poster
+const WHATSAPP_NUMBER = '27816531070'; // 081 653 1070
 
 /* ===== STATE ===== */
 let cart = [];
@@ -122,7 +121,7 @@ function updateOpenStatus() {
   }
 }
 
-/* ===== RENDER MENU ===== */
+/* ===== RENDER MENU — with COMING SOON on pictures ===== */
 function renderMenu() {
   const dag = menuItems.filter(i => i.category === 'dagwood');
   const win = menuItems.filter(i => i.category === 'wings');
@@ -138,7 +137,10 @@ function renderMenu() {
 function cardHTML(item) {
   return `
     <article class="menu-card">
-      <img class="menu-card-img" src="${item.image}" alt="${item.name}" loading="lazy" width="90" height="90">
+      <div class="menu-card-img-wrap">
+        <img class="menu-card-img" src="${item.image}" alt="${item.name}" loading="lazy" width="96" height="96">
+        <div class="coming-soon-overlay"><span>COMING SOON</span></div>
+      </div>
       <div class="menu-card-body">
         <h3>${item.name}</h3>
         <p class="desc">${item.desc}</p>
@@ -186,7 +188,6 @@ function updateCartUI() {
   const total = getTotal();
   const count = getCount();
 
-  // Floating bar
   if (count > 0) {
     cartBar.hidden = false;
     cartBarCount.textContent = count + (count === 1 ? ' ITEM' : ' ITEMS');
@@ -195,48 +196,46 @@ function updateCartUI() {
     cartBar.hidden = true;
   }
 
-  // Drawer body
-  if (cart.length === 0) {
+  if (count === 0) {
     drawerBody.innerHTML = '<p class="empty-msg">Your cart is empty</p>';
     drawerFoot.hidden = true;
   } else {
-    drawerBody.innerHTML = cart.map(item => `
+    drawerBody.innerHTML = cart.map(i => `
       <div class="cart-item">
         <div class="cart-item-info">
-          <h4>${item.name}</h4>
-          <span class="item-price">R${item.price} each</span>
+          <h4>${i.name}</h4>
+          <span class="item-price">R${i.price} each</span>
         </div>
         <div class="qty-ctrl">
-          <button class="qty-btn" type="button" data-action="minus" data-id="${item.id}">−</button>
-          <span class="qty-num">${item.qty}</span>
-          <button class="qty-btn" type="button" data-action="plus" data-id="${item.id}">+</button>
+          <button class="qty-btn" type="button" data-action="minus" data-id="${i.id}">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" type="button" data-action="plus" data-id="${i.id}">+</button>
         </div>
-        <button class="remove-btn" type="button" data-action="remove" data-id="${item.id}" aria-label="Remove">×</button>
+        <button class="remove-btn" type="button" data-id="${i.id}" aria-label="Remove">×</button>
       </div>
     `).join('');
     drawerFoot.hidden = false;
     drawerTotal.textContent = 'R' + total;
+
+    drawerBody.querySelectorAll('.qty-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const delta = btn.dataset.action === 'plus' ? 1 : -1;
+        changeQty(btn.dataset.id, delta);
+      });
+    });
+    drawerBody.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => removeItem(btn.dataset.id));
+    });
   }
 }
 
-/* Event delegation for qty buttons */
-drawerBody.addEventListener('click', e => {
-  const btn = e.target.closest('[data-action]');
-  if (!btn) return;
-  const id = btn.dataset.id;
-  const action = btn.dataset.action;
-  if (action === 'plus') changeQty(id, 1);
-  else if (action === 'minus') changeQty(id, -1);
-  else if (action === 'remove') removeItem(id);
-});
-
-/* ===== DRAWER OPEN / CLOSE ===== */
 function openDrawer() {
   drawer.classList.add('open');
   drawerOverlay.classList.add('open');
   drawer.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
+
 function closeDrawer() {
   drawer.classList.remove('open');
   drawerOverlay.classList.remove('open');
@@ -248,9 +247,7 @@ cartBarBtn.addEventListener('click', openDrawer);
 drawerClose.addEventListener('click', closeDrawer);
 drawerOverlay.addEventListener('click', closeDrawer);
 
-/* ===== CONTINUE TO DETAILS ===== */
 continueBtn.addEventListener('click', () => {
-  if (cart.length === 0) return;
   closeDrawer();
   detailsScreen.hidden = false;
   document.body.style.overflow = 'hidden';
@@ -262,7 +259,7 @@ document.getElementById('detailsBack').addEventListener('click', () => {
   openDrawer();
 });
 
-/* ===== DETAILS FORM → REVIEW ===== */
+/* ===== DETAILS FORM → REVIEW (Collection focused) ===== */
 detailsForm.addEventListener('submit', e => {
   e.preventDefault();
   const name = document.getElementById('custName').value.trim();
@@ -282,6 +279,7 @@ detailsForm.addEventListener('submit', e => {
     <p><strong>Customer:</strong> ${name}</p>
     <p><strong>Phone:</strong> ${phone}</p>
     <p><strong>Collection Time:</strong> ${time}</p>
+    <p><strong>Order Type:</strong> Collection only</p>
     ${notes ? `<p><strong>Instructions:</strong> ${notes}</p>` : ''}
     <hr class="divider">
     ${itemsHtml}
@@ -327,15 +325,14 @@ ${orderData.time}
 Special Instructions:
 ${orderData.notes || 'None'}
 
+Order Type: COLLECTION ONLY
+
 TOTAL:
 R${getTotal()}`;
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 
-  // Optional: clear after send
-  // cart = [];
-  // updateCartUI();
   reviewScreen.hidden = true;
   document.body.style.overflow = '';
 });
@@ -344,9 +341,8 @@ R${getTotal()}`;
 renderMenu();
 updateCartUI();
 updateOpenStatus();
-setInterval(updateOpenStatus, 60000); // refresh every minute
+setInterval(updateOpenStatus, 60000);
 
-/* ===== SAFETY: re-run if DOM was slow ===== */
 document.addEventListener('DOMContentLoaded', function () {
   try {
     updateOpenStatus();

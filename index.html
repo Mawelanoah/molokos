@@ -3,21 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Moloko's Dagwood & Wings | Dagwoods & Wings in Soshanguve</title>
-  <meta name="description" content="Moloko's Dagwood & Wings – Loaded Dagwoods, crispy wings and chips in Soshanguve. Order via WhatsApp for collection at 7583 Bodikela Street, Block VV Ext 10.">
+  <title>Moloko's Dagwood & Wings | Collection Orders in Soshanguve</title>
+  <meta name="description" content="Moloko's Dagwood & Wings – Loaded Dagwoods, crispy wings and chips. Order for collection at 7583 Bodikela Street, Block VV Ext 10, Soshanguve.">
   <meta name="theme-color" content="#c8102e">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
-  <style>
-    /* Fallback so page is never fully blank if CSS fails */
-    body{font-family:system-ui,sans-serif;background:#111;color:#fff;margin:0}
-    .topbar{background:#0a0a0a;padding:12px 16px}
-    .brand-name{font-weight:800;font-size:15px;display:block}
-    .brand-sub{font-size:11px;color:#999;display:block}
-    .status-badge{font-size:12px;background:#1a1a1a;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
-  </style>
 </head>
 <body>
 
@@ -26,11 +18,11 @@
     <div class="container topbar-inner">
       <a href="#home" class="brand">
         <span class="brand-name">MOLOKO'S</span>
-        <span class="brand-sub">DAGWOOD & WINGS</span>
+        <span class="brand-sub">DAGWOOD &amp; WINGS</span>
       </a>
       <div class="status-badge" id="statusBadge">
-        <span class="status-dot" id="statusDot"></span>
-        <span class="status-text" id="statusText">—</span>
+        <span class="status-dot open" id="statusDot"></span>
+        <span class="status-text" id="statusText">OPEN NOW · Closes 18:00</span>
       </div>
     </div>
   </header>
@@ -42,10 +34,14 @@
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
-      <h1>MOLOKO'S<br>DAGWOOD & WINGS</h1>
+      <p class="hero-eyebrow">Soshanguve · Collection Only</p>
+      <h1 class="hero-title">
+        <span class="hero-title-main">MOLOKO'S</span>
+        <span class="hero-title-sub">Dagwood &amp; Wings</span>
+      </h1>
       <p class="hero-tagline">Loaded Dagwoods. Crispy Wings. Made to Satisfy.</p>
       <div class="hero-btns">
-        <a href="#menu" class="btn btn-red">ORDER NOW</a>
+        <a href="#menu" class="btn btn-red">ORDER FOR COLLECTION</a>
         <a href="#menu" class="btn btn-white">VIEW MENU</a>
       </div>
     </div>
@@ -57,23 +53,50 @@
       <h2 class="section-title">DAGWOOD MEALS</h2>
       <div class="menu-list" id="dagwoodList"></div>
 
-      <h2 class="section-title" style="margin-top:2rem;">WINGS MEALS</h2>
+      <h2 class="section-title" style="margin-top: 28px;">WINGS MEALS</h2>
       <div class="menu-list" id="wingsList"></div>
+
+      <!-- COMING SOON SECTION -->
+      <div class="coming-soon-block">
+        <h2 class="section-title">MORE COMING SOON</h2>
+        <p class="coming-soon-text">New meals, combos and specials are on the way. Watch this space.</p>
+        <div class="coming-soon-cards">
+          <div class="coming-soon-card">
+            <div class="coming-soon-img">
+              <span class="coming-soon-badge">COMING SOON</span>
+            </div>
+            <p>New Combos</p>
+          </div>
+          <div class="coming-soon-card">
+            <div class="coming-soon-img">
+              <span class="coming-soon-badge">COMING SOON</span>
+            </div>
+            <p>Special Offers</p>
+          </div>
+          <div class="coming-soon-card">
+            <div class="coming-soon-img">
+              <span class="coming-soon-badge">COMING SOON</span>
+            </div>
+            <p>Sides &amp; Drinks</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- LOCATION -->
-  <section class="location" id="location">
+  <!-- ORDER FOR COLLECTION -->
+  <section class="location" id="collection">
     <div class="container">
       <h2 class="section-title">ORDER FOR COLLECTION</h2>
       <div class="loc-card">
         <p class="loc-address">
-          7583 Bodikela Street<br>
+          <strong>7583 Bodikela Street</strong><br>
           Block VV Ext 10, Soshanguve
         </p>
+        <p class="loc-note">Collection only — no delivery. Choose your collection time when you order.</p>
         <div class="loc-btns">
-          <a href="https://www.google.com/maps/search/?api=1&query=7583+Bodikela+Street+Block+VV+Ext+10+Soshanguve" class="btn btn-outline" target="_blank" rel="noopener">GET DIRECTIONS</a>
-          <a href="https://wa.me/27816531070" class="btn btn-green" target="_blank" rel="noopener">WHATSAPP</a>
+          <a href="https://maps.google.com/?q=7583+Bodikela+Street+Block+VV+Ext+10+Soshanguve" target="_blank" rel="noopener" class="btn btn-outline">GET DIRECTIONS</a>
+          <a href="https://wa.me/27816531070" target="_blank" rel="noopener" class="btn btn-green">WHATSAPP</a>
         </div>
       </div>
     </div>
@@ -84,10 +107,10 @@
     <div class="container">
       <h2 class="section-title">CONTACT</h2>
       <div class="contact-btns">
-        <a href="tel:+27816531070" class="btn btn-red btn-full">CALL 081 653 1070</a>
-        <a href="tel:+27697636479" class="btn btn-outline btn-full">CALL 069 763 6479</a>
-        <a href="https://wa.me/27816531070" class="btn btn-green btn-full" target="_blank" rel="noopener">WHATSAPP ORDER</a>
-        <a href="https://www.google.com/maps/search/?api=1&query=7583+Bodikela+Street+Block+VV+Ext+10+Soshanguve" class="btn btn-outline btn-full" target="_blank" rel="noopener">GET DIRECTIONS</a>
+        <a href="tel:0816531070" class="btn btn-red btn-full">CALL 081 653 1070</a>
+        <a href="tel:0697636479" class="btn btn-outline btn-full">CALL 069 763 6479</a>
+        <a href="https://wa.me/27816531070" target="_blank" rel="noopener" class="btn btn-green btn-full">WHATSAPP ORDER</a>
+        <a href="https://maps.google.com/?q=7583+Bodikela+Street+Block+VV+Ext+10+Soshanguve" target="_blank" rel="noopener" class="btn btn-outline btn-full">GET DIRECTIONS</a>
       </div>
     </div>
   </section>
@@ -95,11 +118,11 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p class="footer-brand">MOLOKO'S DAGWOOD & WINGS</p>
-      <p>Dagwoods • Wings • Chips</p>
+      <p class="footer-brand">MOLOKO'S DAGWOOD &amp; WINGS</p>
+      <p>Dagwoods · Wings · Chips</p>
       <p>7583 Bodikela Street, Block VV Ext 10, Soshanguve</p>
-      <p><a href="tel:+27816531070">081 653 1070</a> · <a href="tel:+27697636479">069 763 6479</a></p>
-      <p class="copy">© 2026 Moloko's Dagwood & Wings</p>
+      <p><a href="tel:0816531070">081 653 1070</a> · <a href="tel:0697636479">069 763 6479</a></p>
+      <p class="copy">© 2026 Moloko's Dagwood &amp; Wings · Collection orders only</p>
     </div>
   </footer>
 
@@ -119,23 +142,22 @@
       <h3>Your Order</h3>
       <button class="drawer-close" id="drawerClose" type="button" aria-label="Close">×</button>
     </div>
-    <div class="drawer-body" id="drawerBody">
-      <p class="empty-msg">Your cart is empty</p>
-    </div>
+    <div class="drawer-body" id="drawerBody"><p class="empty-msg">Your cart is empty</p></div>
     <div class="drawer-foot" id="drawerFoot" hidden>
       <div class="drawer-total-row">
         <span>TOTAL</span>
         <strong id="drawerTotal">R0</strong>
       </div>
-      <button class="btn btn-red btn-full" id="continueBtn" type="button">CONTINUE TO ORDER</button>
+      <button class="btn btn-red btn-full" id="continueBtn" type="button">CONTINUE TO COLLECTION</button>
     </div>
   </aside>
 
-  <!-- CUSTOMER DETAILS SCREEN -->
+  <!-- CUSTOMER DETAILS SCREEN — Collection focused -->
   <div class="screen" id="detailsScreen" hidden>
     <div class="screen-inner">
       <button class="screen-back" id="detailsBack" type="button">← Back to cart</button>
-      <h2>Your Details</h2>
+      <h2>Collection Details</h2>
+      <p class="screen-note">This is a <strong>collection-only</strong> order. Please choose when you will collect.</p>
       <form id="detailsForm">
         <label>
           Full Name *
@@ -166,7 +188,7 @@
       <div class="review-box" id="reviewBox"></div>
       <div class="review-actions">
         <button class="btn btn-outline btn-full" id="editOrderBtn" type="button">EDIT ORDER</button>
-        <button class="btn btn-red btn-full" id="confirmWaBtn" type="button">CONFIRM & SEND TO WHATSAPP</button>
+        <button class="btn btn-red btn-full" id="confirmWaBtn" type="button">CONFIRM &amp; SEND TO WHATSAPP</button>
       </div>
     </div>
   </div>
